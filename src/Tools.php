@@ -185,7 +185,10 @@ class Tools extends BaseTools
             . "</Cabecalho>"
             . "</ns1:ReqConsultaLote>";
         
+//        echo "<xmp>".$content."</xmp>";
         Validator::isValid($content, $this->xsdpath."/ReqConsultaLote.xsd");
+
+
         return $this->send($content, $operation);
     }
     
@@ -199,13 +202,14 @@ class Tools extends BaseTools
     {
         $operation = "consultarNota";
         $lote = date('ymdHis');
-        $content = "<ns1_ReqConsultaNotas "
+        $content = "<ns1:ReqConsultaNotas "
             . "xmlns:ns1=\"http://localhost:8080/WsNFe2/lote\" "
             . "xmlns:tipos=\"http://localhost:8080/WsNFe2/tp\" "
             . "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" "
             . "xsi:schemaLocation=\"http://localhost:8080/WsNFe2/lote "
             . "http://localhost:8080/WsNFe2/xsd/ReqConsultaNotas.xsd\">"
-            . "<Cabecalho Id=\"$lote\">"
+            . "<Cabecalho>"
+            . "<TokenEnvio>{$this->config->token}</TokenEnvio>"
             . "<CodCidade>{$this->wsobj->siaf}</CodCidade>"
             . "<CPFCNPJRemetente>{$this->config->cnpj}</CPFCNPJRemetente>"
             . "<InscricaoMunicipalPrestador>{$this->config->im}</InscricaoMunicipalPrestador>"
@@ -213,12 +217,10 @@ class Tools extends BaseTools
             . "<dtFim>$dtFinal</dtFim>"
             . "<Versao>{$this->wsobj->version}</Versao>"
             . "</Cabecalho>"
-            . "</ns1_ReqConsultaNotas>";
+            . "</ns1:ReqConsultaNotas>";
 
-        if ($this->wsobj->sign->$operation) {
-            $content = $this->sign($content, 'Cabecalho', 'Id');
-        }
         Validator::isValid($content, $this->xsdpath."/ReqConsultaNotas.xsd");
+
         return $this->send($content, $operation);
     }
     

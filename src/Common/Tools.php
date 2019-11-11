@@ -179,11 +179,12 @@ class Tools
      */
     public function __construct($config, Certificate $cert)
     {
-        $this->config = \Safe\json_decode($config);
+        $this->config = json_decode($config);
         $this->certificate = $cert;
         $this->buildPrestadorTag();
+
         $wsobj = $this->urls;
-        $this->wsobj = \Safe\json_decode(\Safe\json_encode($this->urls[$this->config->cmun]));
+        $this->wsobj = json_decode(json_encode($this->urls[$this->config->cmun]));
         $this->environment = 'homologacao';
         if ($this->config->tpamb === 1) {
             $this->environment = 'producao';
@@ -257,6 +258,8 @@ class Tools
             "SOAPAction: \"$action\"",
             "Content-length: $msgSize"
         ];
+
+
         $response = (string) $this->soap->send(
             $operation,
             $url,
@@ -264,6 +267,7 @@ class Tools
             $request,
             $parameters
         );
+
         return $response; //$this->extractContentFromResponse($response, $operation);
     }
     

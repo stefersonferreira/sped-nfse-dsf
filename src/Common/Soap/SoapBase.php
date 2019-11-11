@@ -154,9 +154,11 @@ abstract class SoapBase implements SoapInterface
      */
     public function __construct(
         Certificate $certificate = null,
+        $disableCertValidation = false,
         LoggerInterface $logger = null
     ) {
         $this->logger = $logger;
+        $this->disableCertValidation($disableCertValidation);
         $this->certificate = $this->checkCertValidity($certificate);
         $this->setTemporaryFolder(sys_get_temp_dir() . '/sped/');
     }
@@ -395,7 +397,7 @@ abstract class SoapBase implements SoapInterface
             //pois sua senha não existe além do tempo de execução desta classe
             $this->temppass = Strings::randomString(16);
             //encripta a chave privada entes da gravação do filesystem
-            \Safe\openssl_pkey_export(
+            openssl_pkey_export(
                 $this->certificate->privateKey,
                 $private,
                 $this->temppass
@@ -476,7 +478,7 @@ abstract class SoapBase implements SoapInterface
         }
         $this->debugdir = $cnpj() . '/debug/';
         $now = \DateTime::createFromFormat('U.u', microtime(true));
-        $time = \Safe\substr($now->format("ymdHisu"), 0, 16);
+        $time = substr($now->format("ymdHisu"), 0, 16);
         try {
             $this->filesystem->put(
                 $this->debugdir . $time . "_" . $operation . "_sol.txt",
