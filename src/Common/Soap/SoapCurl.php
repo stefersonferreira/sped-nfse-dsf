@@ -57,7 +57,9 @@ class SoapCurl extends SoapBase implements SoapInterface
         $this->requestBody = $envelope;
        
         try {
-            $this->saveTemporarilyKeyFiles();
+
+            //coentando enquanto não tem certificado
+            //$this->saveTemporarilyKeyFiles();
             $oCurl = curl_init();
             $this->setCurlProxy($oCurl);
             curl_setopt($oCurl, CURLOPT_URL, $url);
@@ -104,7 +106,8 @@ class SoapCurl extends SoapBase implements SoapInterface
                 $this->responseHead . "\n" . $this->responseBody
             );
         } catch (\Exception $e) {
-            echo $e->getTraceAsString();
+            var_dump($e);
+            //echo $e->getTraceAsString();
             //throw SoapException::unableToLoadCurl($e->getMessage());
             //throw SoapException::unableToLoadCurl($e->getTraceAsString());
         }

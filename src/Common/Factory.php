@@ -227,6 +227,12 @@ class Factory
         );
         $this->dom->addChild(
             $this->rps,
+            "CodigoServico",
+            $this->std->codigoservico,
+            true
+        );
+        $this->dom->addChild(
+            $this->rps,
             "AliquotaAtividade",
             number_format($this->std->aliquotaatividade, 4, '.', ''),
             true

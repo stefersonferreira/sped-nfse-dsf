@@ -269,6 +269,8 @@ class Tools extends BaseTools
         $content .= "</Lote>"
             . "</ns1:ReqEnvioLoteRPS>";
         
+        //echo '<pre>'.$content.'</pre>';die;
+
         if ($this->wsobj->sign->$operation) {
             $content = $this->sign($content, 'Lote', 'Id');
         }

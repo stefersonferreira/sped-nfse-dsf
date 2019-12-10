@@ -20,7 +20,7 @@
 					</xs:annotation>
 					<xs:complexType>
 						<xs:sequence>
-							<xs:element name="TokenEnvio" type="tipos:tpTokenEnvioRPS" minOccurs="1" maxOccurs="1">
+							<xs:element name="TokenEnvio" type="tipos:tpTokenEnvioRPS" minOccurs="0" maxOccurs="1">
 								<xs:annotation>
 									<xs:documentation>Token de envio do lote.</xs:documentation>
 								</xs:annotation>
