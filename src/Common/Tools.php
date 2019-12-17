@@ -106,7 +106,7 @@ class Tools
             'municipio' => 'Sao Luiz',
             'uf' => 'MA',
             'siaf' => '0921',
-            'homologacao' => 'http://homo.stm.semfaz.saoluis.ma.gov.br/WsNFe2/LoteRps',
+            'homologacao' => 'http://beta.semfaz.saoluis.ma.gov.br/WsNFe2/LoteRps',
             'producao' => 'http://stm.semfaz.saoluis.ma.gov.br/WsNFe2/LoteRps',
             'version' => '1',
             'msgns' => '',
