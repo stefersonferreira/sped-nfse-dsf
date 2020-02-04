@@ -103,11 +103,11 @@ class Tools
             ]
         ],
         '2111300' => [
-            'municipio' => 'Sao Luiz',
+            'municipio' => 'Sao Luiz', 
             'uf' => 'MA',
             'siaf' => '0921',
             'homologacao' => 'http://beta.semfaz.saoluis.ma.gov.br/WsNFe2/LoteRps',
-            'producao' => 'http://stm.semfaz.saoluis.ma.gov.br/WsNFe2/LoteRps',
+            'producao' => 'http://sistemas.semfaz.saoluis.ma.gov.br/WsNFe2/LoteRps',
             'version' => '1',
             'msgns' => '',
             'soapns' => 'http://sistemas.semfaz.saoluis.ma.gov.br/WsNFe2/LoteRps.jws',

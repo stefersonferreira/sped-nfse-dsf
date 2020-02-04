@@ -198,7 +198,7 @@ class Tools extends BaseTools
      * @param string $dtFinal
      * @return string
      */
-    public function consultarNota($dtInicial, $dtFinal, $id): string
+    public function consultarNota($dtInicial, $dtFinal): string //, $id): string
     {
         $operation = "consultarNota";
         $lote = date('ymdHis');
