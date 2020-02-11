@@ -50,7 +50,7 @@ class Standardize
         'EnviarLoteRpsResposta',
         'GerarNfseEnvio',
         'RPS',
-        'RetornoConsultaSeqRps'
+        'consultarNFSeRpsReturn'
     ];
     
     public function __construct($xml = null)
@@ -76,14 +76,13 @@ class Standardize
         $dom->formatOutput = false;
         $dom->loadXML($xml);
 
+
         foreach ($this->rootTagList as $key) {
             $node = !empty($dom->getElementsByTagName($key)->item(0))
                 ? $dom->getElementsByTagName($key)->item(0)
                 : '';
             if (!empty($node)) {
                 $this->node = $dom->saveXML($node);
-
-                echo $this->node;
                 return $key;
             }
         }
@@ -109,9 +108,23 @@ class Standardize
     public function toStd($xml = null)
     {
         if (!empty($xml)) {
-            $this->whichIs($xml);
+            $key = $this->whichIs($xml);
         }
+
+        /*adicionado tratamento para eliminar chave mãe*/
+        $this->node = ltrim(str_replace("<".$key.">", "", $this->node));
+        $this->node = str_replace("</".$key.">", "", $this->node);
+
+        echo $this->node;
+        $this->node = html_entity_decode($this->node);
         $sxml = simplexml_load_string($this->node);
+        if (false === $sxml) {
+                echo "Failed loading XML\n";
+                foreach(libxml_get_errors() as $error) {
+                    echo "\t", $error->message;
+                }
+            }
+
         $this->json = str_replace(
             '@attributes',
             'attributes',

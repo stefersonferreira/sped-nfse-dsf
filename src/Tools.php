@@ -96,6 +96,7 @@ class Tools extends BaseTools
             . "xsi:schemaLocation=\"http://localhost:8080/WsNFe2/lote "
             . "http://localhost:8080/WsNFe2/xsd/ReqConsultaNFSeRPS.xsd\">"
             . "<Cabecalho>"
+            . "<TokenEnvio>{$this->config->token}</TokenEnvio>"
             . "<CodCidade>{$this->wsobj->siaf}</CodCidade>"
             . "<CPFCNPJRemetente>{$this->config->cnpj}</CPFCNPJRemetente>"
             . "<transacao>true</transacao>"
